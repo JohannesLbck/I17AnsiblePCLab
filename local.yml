@@ -8,6 +8,11 @@
     package:
       name: htop
 
+  - name: remove package 
+    package:
+      name:
+      state: absent
+
   - name: copy .bashrc file
     copy:
       src: files/bashrc
@@ -47,3 +52,22 @@
     dconf:
       key: ?
       value: "'file://user/share/backgrounds/ansible-wallpaper.png'"      
+
+  - name: enable Night Light
+    dconf:
+      key: /org/gnome/settings-daemon/plugins/color/night-light-enabled
+      vallue: true
+  
+  - name: Copy a file to the pc
+    copy:
+      src: files/placeholder.txt
+      dest: /home/placeholder/
+
+  - name: Enable Flathub repository
+    command: flapak remote-add --if-not-exists flahub https://flathub.org/repo/flathub.flappakrepo
+
+  - name: Install I forgot the name of the office package :D
+    command: flatpak install --assumeyes flathub >insert name<
+
+  - name: set file access using the command I forgot
+    command: xxxx yyy zzz
