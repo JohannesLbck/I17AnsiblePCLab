@@ -4,7 +4,46 @@
   become: true
 
   tasks:
-  - name: install htop
+  - name: install packages
     package:
       name: htop
+
+  - name: copy .bashrc file
+    copy:
+      src: files/bashrc
+      dest: /home/.bashrc
+      owner: root
+      group: root
+  
+  - name: add I17admin
+    user:
+      name: I17admin
+      system: yes
+  
+  - name: set up sudo for I17admin
+    copy:
+      src: files/sudoer_I17admin
+      dest: /etc/sudoers.d/I17admin
+      owner: root
+      group: root
+      mode: 0440
+  
+  - name: add updater-ansible pull cron job
+    cron:
+      name: ansible auto-update
+      user: I17admin
+      minute: "*90"
+      job: ansible-pull -o -U https://github.com/JohannesLbck/I17AnsiblePCLab.git
       
+  - name: copy wallpaper file
+    copy:
+      src: files/wallpaper.png
+      dest: /user/share/backgrounds/ansible-wallpaper.png
+      owner: root
+      group: root
+
+  - name: set wallpaper
+    become_user: root
+    dconf:
+      key: ?
+      value: "'file://user/share/backgrounds/ansible-wallpaper.png'"      
