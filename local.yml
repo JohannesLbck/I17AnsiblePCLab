@@ -8,7 +8,6 @@
         state: present
         name: 
          - dconf-editor
-         - vlc
          - gimp
 
     - name: Echo "Hello World"
@@ -24,3 +23,22 @@
          - espeak
          - qemu
 
+  - name: add I17admin
+    user:
+      name: I17admin
+      system: yes
+  
+  - name: set up sudo for I17admin
+    copy:
+      src: files/sudoer_I17admin
+      dest: /etc/sudoers.d/I17admin
+      owner: root
+      group: root
+      mode: 0440
+  
+  - name: add updater-ansible pull cron job
+    cron:
+      name: ansible auto-update
+      user: I17admin
+      minute: "*90"
+      job: ansible-pull -o -U https://github.com/JohannesLbck/I17AnsiblePCLab.git
