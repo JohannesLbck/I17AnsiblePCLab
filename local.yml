@@ -1,31 +1,27 @@
 ---
 - hosts: localhost
-  connection: local
-  become: true
-
   tasks:
+    - name: install packages
+      become: true
+      become_user: root
+      dnf:
+        state: present
+        name:
+         - dconf-editor
+         - gnome-tweaks tilix
+         - vlc
+         - gimp
+
   - name: Echo "Hello World"
     command: echo "Hello World"
 
-  - name: install packages
+  - name: remove openoffice
+    become: true
+    become_user: root 
     dnf:
-      name:
-        - dconf-editor
-        - gnome-tweaks tilix
-        - vlc
-        - gimp
-
-  - name: remove openoffice 
-    package:
-      name: openoffice
       state: absent
+      name: 
+       - openoffice
+       - espeak
+       - qemu
 
-  - name: remove espeak 
-    package:
-      name: espeak
-      state: absent
-
-  - name: remove qemu
-    package:
-      name: qemu
-      state: absent
