@@ -50,7 +50,8 @@
         dest: /home/placeholder/
 
     - name: Enable Flathub repository
-      command: flapak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flappakrepo
+      command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
 
     - name: Install wps
       command: flatpak install --assumeyes flathub wps
