@@ -7,6 +7,9 @@
   - name: Echo "Hello World"
     command: echo "Hello World"
 
-  - name: install test
-    dnf:
-      name: htop
+  - name: install packages
+    package:
+      name: dconf-editor
+      name: gnome-tweaks tilix
+      name: vlc
+      name: gimp
