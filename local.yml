@@ -6,11 +6,7 @@
       become_user: root
       dnf:
         state: present
-        name:
-         - dconf-editor,
-         - gnome-tweaks tilix,
-         - vlc,
-         - gimp
+        name: dconf-editor
 
     - name: Echo "Hello World"
       command: echo "Hello World"
