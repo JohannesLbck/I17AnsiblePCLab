@@ -9,7 +9,23 @@
 
   - name: install packages
     package:
-      name: dconf-editor
-      name: gnome-tweaks tilix
-      name: vlc
-      name: gimp
+      name:
+        - dconf-editor
+        - gnome-tweaks tilix
+        - vlc
+        - gimp
+
+  - name: remove openoffice 
+    package:
+      name: openoffice
+      state: absent
+
+  - name: remove espeak 
+    package:
+      name: espeak
+      state: absent
+
+  - name: remove qemu
+    package:
+      name: qemu
+      state: absent
