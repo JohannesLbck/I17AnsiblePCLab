@@ -21,7 +21,7 @@
       dnf:
         state: absent
         name: 
-       - openoffice
-       - espeak
-       - qemu
+         - openoffice
+         - espeak
+         - qemu
 
