@@ -6,7 +6,10 @@
       become_user: root
       dnf:
         state: present
-        name: dconf-editor
+        name: 
+         - dconf-editor
+         - vlc
+         - gimp
 
     - name: Echo "Hello World"
       command: echo "Hello World"
