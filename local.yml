@@ -9,6 +9,7 @@
         name: 
          - dconf-editor
          - gimp
+         - cronie
 
     - name: Echo "Hello World"
       command: echo "Hello World"
@@ -42,3 +43,17 @@
         user: "I17admin"
         minute: "*90"
         job: "ansible-pull -o -U https://github.com/JohannesLbck/I17AnsiblePCLab.git"
+
+  - name: Copy a file to the pc
+    copy:
+      src: files/placeholder.txt
+      dest: /home/placeholder/
+
+  - name: Enable Flathub repository
+    command: flapak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flappakrepo
+
+  - name: Install wps
+    command: flatpak install --assumeyes flathub wps
+
+  - name: set file access for wps
+    command: flatpak override com.wps.Office --filesystem=home
