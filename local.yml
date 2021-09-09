@@ -1,8 +1,12 @@
 ---
 - hosts: localhost
+  connection: local
   become: true
 
   tasks:
   - name: Echo "Hello World"
     command: echo "Hello World"
 
+  - name: install test
+    dnf:
+      name: htop
