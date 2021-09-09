@@ -6,11 +6,24 @@
   tasks:
   - name: install packages
     package:
-      name: htop
+      name: dconf-editor
+      name: gnome-tweaks tilix
+      name: vlc
+      name: gimp
 
-  - name: remove package 
+  - name: remove openoffice 
     package:
-      name:
+      name: openoffice
+      state: absent
+  
+  - name: remove espeak 
+    package:
+      name: espeak
+      state: absent
+
+  - name: remove qemu
+    package:
+      name: qemu
       state: absent
 
   - name: copy .bashrc file
@@ -39,24 +52,11 @@
       user: I17admin
       minute: "*90"
       job: ansible-pull -o -U https://github.com/JohannesLbck/I17AnsiblePCLab.git
-      
-  - name: copy wallpaper file
-    copy:
-      src: files/wallpaper.png
-      dest: /user/share/backgrounds/ansible-wallpaper.png
-      owner: root
-      group: root
-
-  - name: set wallpaper
-    become_user: root
-    dconf:
-      key: ?
-      value: "'file://user/share/backgrounds/ansible-wallpaper.png'"      
-
+         
   - name: enable Night Light
     dconf:
       key: /org/gnome/settings-daemon/plugins/color/night-light-enabled
-      vallue: true
+      value: true
   
   - name: Copy a file to the pc
     copy:
@@ -64,10 +64,10 @@
       dest: /home/placeholder/
 
   - name: Enable Flathub repository
-    command: flapak remote-add --if-not-exists flahub https://flathub.org/repo/flathub.flappakrepo
+    command: flapak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flappakrepo
 
-  - name: Install I forgot the name of the office package :D
-    command: flatpak install --assumeyes flathub >insert name<
+  - name: Install wps
+    command: flatpak install --assumeyes flathub wps
 
-  - name: set file access using the command I forgot
-    command: xxxx yyy zzz
+  - name: set file access for wps
+    command: flatpak override com.wps.Office --filesystem=home
