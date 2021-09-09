@@ -12,15 +12,15 @@
          - vlc
          - gimp
 
-  - name: Echo "Hello World"
-    command: echo "Hello World"
+    - name: Echo "Hello World"
+      command: echo "Hello World"
 
-  - name: remove openoffice
-    become: true
-    become_user: root 
-    dnf:
-      state: absent
-      name: 
+    - name: remove openoffice
+      become: true
+      become_user: root 
+      dnf:
+        state: absent
+        name: 
        - openoffice
        - espeak
        - qemu
