@@ -7,9 +7,9 @@
       dnf:
         state: present
         name:
-         - dconf-editor
-         - gnome-tweaks tilix
-         - vlc
+         - dconf-editor,
+         - gnome-tweaks tilix,
+         - vlc,
          - gimp
 
     - name: Echo "Hello World"
