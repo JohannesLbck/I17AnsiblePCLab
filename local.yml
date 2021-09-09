@@ -8,7 +8,7 @@
     command: echo "Hello World"
 
   - name: install packages
-    package:
+    dnf:
       name:
         - dconf-editor
         - gnome-tweaks tilix
