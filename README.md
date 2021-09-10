@@ -1,2 +1,10 @@
 # I17AnsiblePCLab
-Setting up PC Lab using ansible
+Small Repository, that uses Ansible for some basic configuration of Fedora PCs.
+# How to use
+Execute the command: sudo ansible-pull -U https://github.com/JohannesLbck/I17AnsiblePCLab.git
+# Structure
+local.yml contains pretasks and includes towards the actual tasks in /tasks
+/tasks/packages.yml installs missing packages and removes unneeded ones
+/tasks/filecopies.yml can be used to distribute files to all the PCs on which ansible pull was used, rn just a placeholder
+/tasks/users.yml sets up a new user
+/tasks/cronjobs.yml sets up a autoupdater, which checks the repository every 10 minutes, and reruns the playbook if changes are found
