@@ -1,0 +1,4 @@
+- name: Copy a file to the pc
+  copy:
+    src: files/placeholder.txt
+    dest: /home/placeholder/

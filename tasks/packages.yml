@@ -1,0 +1,25 @@
+---
+- name: install packages
+  dnf:
+    state: present
+    name: 
+     - dconf-editor
+     - gimp
+     - cronie
+
+- name: remove openoffice
+  dnf:
+    state: absent
+    name: 
+     - openoffice
+     - espeak
+     - qemu
+
+- name: Enable Flathub repository
+  command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+- name: Install wps
+  command: flatpak install --assumeyes flathub wps
+
+- name: set file access for wps
+  command: flatpak override com.wps.Office --filesystem=home

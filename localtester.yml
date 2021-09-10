@@ -1,76 +1,60 @@
 ---
 - hosts: localhost
-  connection: local
-  become: true
-
   tasks:
-  - name: Echo "Hello World"
-    command: echo "Hello World"
+    - name: install packages
+      become: true
+      become_user: root
+      dnf:
+        state: present
+        name: 
+         - dconf-editor
+         - gimp
+         - cronie
 
-  - name: install packages
-    package:
-      name: dconf-editor
-      name: gnome-tweaks tilix
-      name: vlc
-      name: gimp
+    - name: Echo "Hello World"
+      command: echo "Hello World"
 
-  - name: remove openoffice 
-    package:
-      name: openoffice
-      state: absent
-  
-  - name: remove espeak 
-    package:
-      name: espeak
-      state: absent
+    - name: remove openoffice
+      become: true
+      become_user: root 
+      dnf:
+        state: absent
+        name: 
+         - openoffice
+         - espeak
+         - qemu
 
-  - name: remove qemu
-    package:
-      name: qemu
-      state: absent
+    - name: add I17admin
+      user:
+        name: I17admin
+        system: yes
+    
+    - name: set up sudo for I17admin
+      copy:
+        src: files/sudoer_I17admin
+        dest: /etc/sudoers.d/I17admin
+        owner: root
+        group: root
+        mode: 0440
+    
+    - name: add updater-ansible pull cron job
+      cron:
+        name: "ansible auto-update"
+        user: "I17admin"
+        minute: "*90"
+        job: "ansible-pull -o -U https://github.com/JohannesLbck/I17AnsiblePCLab.git"
 
-  - name: copy .bashrc file
-    copy:
-      src: files/bashrc
-      dest: /home/.bashrc
-      owner: root
-      group: root
-  
-  - name: add I17admin
-    user:
-      name: I17admin
-      system: yes
-  
-  - name: set up sudo for I17admin
-    copy:
-      src: files/sudoer_I17admin
-      dest: /etc/sudoers.d/I17admin
-      owner: root
-      group: root
-      mode: 0440
-  
-  - name: add updater-ansible pull cron job
-    cron:
-      name: ansible auto-update
-      user: I17admin
-      minute: "*90"
-      job: ansible-pull -o -U https://github.com/JohannesLbck/I17AnsiblePCLab.git
-         
-  - name: enable Night Light
-    dconf:
-      key: /org/gnome/settings-daemon/plugins/color/night-light-enabled
-      value: true
-  
-  - name: Copy a file to the pc
-    copy:
-      src: files/placeholder.txt
-      dest: /home/placeholder/
+    - name: Copy a file to the pc
+      copy:
+        src: files/placeholder.txt
+        dest: /home/placeholder/
 
-  - name: Enable Flathub repository
-    command: flapak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flappakrepo
+    - name: Enable Flathub repository
+      command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-  - name: Install wps
-    command: flatpak install --assumeyes flathub wps
 
-  - name: set file access for wps
-    command: flatpak override com.wps.Office --filesystem=home
+    - name: Install wps
+      command: flatpak install --assumeyes flathub wps
+
+    - name: set file access for wps
+      command: flatpak override com.wps.Office --filesystem=home
