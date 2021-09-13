@@ -24,7 +24,10 @@
   command: flatpak override com.wps.Office --filesystem=home
 
 - name: remove libreoffice
-  command: sudo dnf remove *libreoffice*
+  flatpak:
+    name: org.libreoffice.LibreOffice
+    method: user
+    state: absent
 
 - name: update all packages
   dnf:
