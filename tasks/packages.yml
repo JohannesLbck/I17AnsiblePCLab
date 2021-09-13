@@ -24,4 +24,4 @@
   command: flatpak override com.wps.Office --filesystem=home
 
 - name: remove libreoffice
-  command: sudo dnf remove *libreoffice*
+  command: sudo dnf remove *libreoffice* *qemu* *espeak*
