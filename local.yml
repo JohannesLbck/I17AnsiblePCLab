@@ -2,14 +2,13 @@
 - hosts: localhost
   connection: local
   become: true
-
   pre_tasks:
     - name: update repositories
-      dnf:
-        update_cache: yes
+      dnf:  update_cache: yes
+      change_when: False
 
-      tasks:
-        - include: tasks/packages.yml
-        - include: tasks/users.yml
-        - include: tasks/cronjobs.yml
-        - include: tasks/filecopies.yml
+  tasks:
+    - include: tasks/packages.yml
+    - include: tasks/users.yml
+    - include: tasks/cronjobs.yml
+    - include: tasks/filecopies.yml
