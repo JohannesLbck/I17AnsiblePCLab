@@ -4,7 +4,7 @@
   become: true
   pre_tasks:
     - name: update repositories
-      dnf:  update_cache: yes
+      dnf:  update_cache = yes
       change_when: False
 
   tasks:
