@@ -7,13 +7,12 @@
      - gimp
      - cronie
 
-- name: remove openoffice
+- name: remove packages
   dnf:
     state: absent
-    name: 
-     - *openoffice*
-     - *espeak*
-     - *qemu*
+    name:
+     - espeak
+     - qemu
 
 - name: Enable Flathub repository
   command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -23,3 +22,6 @@
 
 - name: set file access for wps
   command: flatpak override com.wps.Office --filesystem=home
+
+- name: remove libreoffice
+  command: sudo dnf remove *libreoffice*
