@@ -2,10 +2,6 @@
 - hosts: localhost
   connection: local
   become: true
-  vars_prompt:
-    - name: username
-      prompt: Please enter the username
-      private: no
   tasks:
     - include: tasks/packages.yml
     - include: tasks/users.yml
