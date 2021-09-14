@@ -10,4 +10,16 @@
     owner: root
     group: root
     mode: 0440
-    generate_ssh_key: yes
+
+- name: set up autologin
+  copy:
+    src: files/custom.conf
+    dest: /etc/gdm
+    owner: root
+    group: root
+    mode: 0440
+
+- name: modify file accordingly
+  path: /etc/gdm/custom.conf
+  regexp: "I17PCLab"
+  line: "{{ vars_prompt }}"

@@ -1,4 +1,4 @@
 - name: Copy a file to the pc
   copy:
     src: files/placeholder.txt
-    dest: /home/I7ansibleAdmin/placeholder/
+    dest: "/home/{{ vars_prompt }}/placeholder/"
