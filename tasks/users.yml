@@ -1,12 +1,12 @@
 - name: create ansible user
   user:
-    name: I17ansibleAdmin
+    name: I17PCLab
     system: yes
     
-- name: set up sudo for I17ansibleAdmin
+- name: set up sudo for I17PCLab
   copy:
-    src: files/sudoer_I17ansibleAdmin
-    dest: /etc/sudoers.d/I17ansibleAdmin
+    src: files/sudoer_I17PCLab
+    dest: /etc/sudoers.d/I17PCLab
     owner: root
     group: root
     mode: 0440
