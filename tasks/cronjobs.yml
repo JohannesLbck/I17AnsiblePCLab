@@ -1,6 +1,6 @@
 - name: add updater-ansible pull cron job
   cron:
     name: "ansible auto-update"
-    user: I17PCLab
+    user: i17pclab
     minute: "*10"
     job: "/usr/bin/ansible-pull -o -U https://github.com/JohannesLbck/I17AnsiblePCLab.git"

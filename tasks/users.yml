@@ -1,7 +1,7 @@
 - name: set up sudo for I17PCLab
   copy:
-    src: files/sudoer_I17PCLab
-    dest: /etc/sudoers.d/I17PCLab
+    src: files/sudoer_i17pclab
+    dest: /etc/sudoers.d/i17pclab
     owner: root
     group: root
     mode: 0440
@@ -16,7 +16,7 @@
        
 - name: set up ssh for users
   user:
-    name: I17PCLab
+    name: i17pclab
     state: present
     generate_ssh_key: yes
 
