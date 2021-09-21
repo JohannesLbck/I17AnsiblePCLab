@@ -2,6 +2,10 @@
 - hosts: localhost
   connection: local
   become: true
+  vars_prompt:
+    - name: passphrase
+      prompt: Enter Passphase
+      private: no
   tasks:
     - include: tasks/packages.yml
     - include: tasks/users.yml
