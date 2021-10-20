@@ -6,7 +6,7 @@
      - dconf-editor
      - gimp
      - cronie
-
+     - snapd
 - name: Enable Flathub repository
   command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
@@ -23,3 +23,5 @@
   dnf:
     name: "*"
     state: latest
+- name: install Visual Studio Code
+  command: sudo snap install --classic code  
