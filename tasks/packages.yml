@@ -20,5 +20,9 @@
   dnf:
     name: "*"
     state: latest
+
+- name: set up snap
+  command: ls -s /var/lib/snapd/snap /snap
+    
 - name: install Visual Studio Code
-  command: sudo snap install --classic code  
+  command: snap install --classic code  
