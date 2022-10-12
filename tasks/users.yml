@@ -19,5 +19,6 @@
     name: i17pclab
     state: present
     generate_ssh_key: yes
+    password: i17
 
    
