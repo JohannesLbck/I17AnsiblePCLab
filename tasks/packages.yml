@@ -7,7 +7,8 @@
      - gimp
      - cronie
      - snapd
-     - graphviz  
+     - graphviz
+     - code
 - name: Enable Flathub repository
   command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 - name: Install wps
@@ -20,9 +21,3 @@
   dnf:
     name: "*"
     state: latest
-
-- name: set up snap
-  command: ls -s /var/lib/snapd/snap /snap
-    
-- name: install Visual Studio Code
-  command: snap install --classic code  
