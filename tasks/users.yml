@@ -14,11 +14,13 @@
     group: root
     mode: 0440
        
-- name: set up ssh for users
+- name: set up pw and ssh
+  vars:
+    pw: i17
   user:
     name: i17pclab
     state: present
     generate_ssh_key: yes
-    password: i17
+    password: "{{ pw | password_hash('sha512') }}"
 
    
